@@ -1,0 +1,33 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python .\src\data_ingestion.py
+    deps:
+    - path: .\src\data_ingestion.py
+      hash: md5
+      md5: 2fb2bb449561f324f2cd9dcdd98f54c8
+      size: 658
+    outs:
+    - path: data/raw
+      hash: md5
+      md5: b558868568c58d07b21917adba43f4c6.dir
+      size: 887224
+      nfiles: 2
+  data_preprocessing:
+    cmd: python .\src\data_preprocessing.py
+    deps:
+    - path: .\src\data_preprocessing.py
+      hash: md5
+      md5: b71972dee24c08470bec6372a62d09f4
+      size: 2443
+    - path: data/raw
+      hash: md5
+      md5: b558868568c58d07b21917adba43f4c6.dir
+      size: 887224
+      nfiles: 2
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: b05f56f2e4437e01123455f3e0edc27e.dir
+      size: 675133
+      nfiles: 2
