@@ -1,0 +1,7 @@
+handling the paramaters using params.yaml -> define the hyperparameters
+
+update the frequently updating parameters 
+
+import yaml
+
+update in dvc.yaml also
