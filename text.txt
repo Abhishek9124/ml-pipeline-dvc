@@ -5,3 +5,119 @@ update the frequently updating parameters
 import yaml
 
 update in dvc.yaml also
+
+improving the code quality
+
+use functions
+type hinting
+exception handling 
+
+
+Python Logging
+### 🧠 **LOGGING – Postmortem of the Code**
+
+*(Used to track events, errors & execution flow of a program)*
+
+---
+
+#### 🏗️ **1. Core Concept**
+
+* Logging helps record **events during runtime**.
+* Acts as a **postmortem report** for debugging & monitoring.
+
+---
+
+#### 🧩 **2. Components of Logging**
+
+##### 🪵 **Logger**
+
+* Entry point of the logging system.
+* You create it using `logging.getLogger()`.
+* Example:
+
+  ```python
+  logger = logging.getLogger(__name__)
+  ```
+
+##### 🎯 **Handler**
+
+* Decides **where** logs go.
+* Types:
+
+  * 🖥️ **StreamHandler** → Console output.
+  * 📁 **FileHandler** → Writes logs to a file.
+  * 📨 **SMTPHandler** → Sends logs via email.
+  * ☁️ **HTTPHandler** → Sends logs to a web server.
+* Example:
+
+  ```python
+  file_handler = logging.FileHandler("app.log")
+  console_handler = logging.StreamHandler()
+  ```
+
+##### 🧾 **Formatter**
+
+* Decides **how** the log message looks.
+* Example:
+
+  ```python
+  formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+  file_handler.setFormatter(formatter)
+  ```
+
+##### 🔗 **Connecting them**
+
+* Combine everything:
+
+  ```python
+  logger.addHandler(file_handler)
+  logger.addHandler(console_handler)
+  ```
+
+---
+
+#### ⚙️ **3. Logging Levels (Severity Order)**
+
+| Level           | Numeric Value | Purpose                                                   |
+| --------------- | ------------- | --------------------------------------------------------- |
+| 🐛 **DEBUG**    | 10            | Detailed information for diagnosing problems.             |
+| ℹ️ **INFO**     | 20            | Confirmation that things are working as expected.         |
+| ⚠️ **WARNING**  | 30            | Something unexpected happened, but the program continues. |
+| ❌ **ERROR**     | 40            | A more serious problem, program might fail for a task.    |
+| ☠️ **CRITICAL** | 50            | Very serious error — program may not continue running.    |
+
+Example:
+
+```python
+logger.debug("Debugging info")
+logger.info("General info")
+logger.warning("Something looks odd")
+logger.error("An error occurred")
+logger.critical("System crash!")
+```
+
+---
+
+#### 🧩 **4. Typical Logging Flow (Mindmap Summary)**
+
+```
+LOGGING
+│
+├── Logger (creates logs)
+│   ├── setLevel()
+│   └── addHandler()
+│
+├── Handler (decides destination)
+│   ├── FileHandler → file.log
+│   └── StreamHandler → console
+│
+├── Formatter (message layout)
+│   └── '%(asctime)s - %(levelname)s - %(message)s'
+│
+└── Levels (priority)
+    ├── DEBUG
+    ├── INFO
+    ├── WARNING
+    ├── ERROR
+    └── CRITICAL
+```
